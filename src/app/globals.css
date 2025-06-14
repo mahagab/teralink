@@ -7,14 +7,17 @@
   /* Cores Primárias/Secundárias */
   --color-principal: #AECAD6;
   --color-secundaria: #B3E0C9;
+  --color-secundaria-100: #7DCAA2;
 
   /* Cores de Fundo */
   --color-header: #FAF9F7;
-  --color-fundo-2: #F7F7F7;
+  --color-container: #F7F7F7;
+  --color-container-100: #FCFCFC;
+  --color-banner: #FAF6F4;
 
   /* Cores de Texto */
-  --color-texto-principal: #4A4A4A;
-  --color-texto-secundario: #888888;
+  --color-txtprimary: #4A4A4A;
+  --color-txtsecundary: #888888;
 
   /* Cores Opcionais */
   --color-opcional-1: #F4D0B8;
