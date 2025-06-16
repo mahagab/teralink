@@ -1,7 +1,7 @@
-import { Footer } from "../(dashboard)/_components/footer/page";
-import { Header } from "../(dashboard)/_components/header/page";
-import { Hero } from "../(dashboard)/_components/hero/page";
-import { Professionals } from "../(dashboard)/_components/professionals/page";
+import { Footer } from "./_components/footer/page";
+import { Header } from "./_components/header/page";
+import { Hero } from "./_components/hero/page";
+import { Professionals } from "./_components/professionals/page";
 
 export default function Home() {
   return (
