@@ -16,15 +16,16 @@ import {
 import { Button } from "@/components/ui/button";
 import {
   CalendarCheck2,
-  CalendarPlus,
   Captions,
+  ChevronLeft,
+  ChevronRight,
   Folder,
   List,
-  Plane,
   User,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { Collapsible, CollapsibleContent } from "@radix-ui/react-collapsible";
 
 export function SidebarDashboard({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -42,8 +43,99 @@ export function SidebarDashboard({ children }: { children: React.ReactNode }) {
           }
         )}
       >
-        <div>
-          <Image src={logoPsi} alt="Logo SaaS" />
+        <div className="mb-6 mt-4">
+
+          <div className="flex self-end">
+            {!isCollapsed && (
+
+              <Link href="/dashboard">
+                <Image src={logoPsi}
+                  alt="Logo SaaS"
+                  priority
+                  quality={100}
+                />
+              </Link>
+            )}
+            <Button className="bg-gray-100 hover:bg-gray-400 text-txtprimary self-end mb-2"
+              onClick={() => setIsCollapsed(!isCollapsed)}>
+              {!isCollapsed ? <ChevronLeft className="w-12 h-12" /> : <ChevronRight className="w-12 h-12" />}
+            </Button>
+          </div>
+          {isCollapsed && (
+            <nav className="flex flex-col gap-1 overflow-hidden mt-2">
+              <SidebarLink
+                href="/dashboard"
+                label="Agendamentos"
+                pathname={pathname}
+                isCollapsed={isCollapsed}
+                icon={<CalendarCheck2 className="w-6 h-6" />}
+              />
+              <SidebarLink
+                href="/dashboard/service"
+                label="Serviços"
+                pathname={pathname}
+                isCollapsed={isCollapsed}
+                icon={<Folder className="w-6 h-6" />}
+              />
+               <SidebarLink
+                  href="/dashboard/profile"
+                  label="Perfil"
+                  pathname={pathname}
+                  isCollapsed={isCollapsed}
+                  icon={<User className="w-6 h-6" />}
+                />
+                <SidebarLink
+                  href="/dashboard/plans"
+                  label="Planos"
+                  pathname={pathname}
+                  isCollapsed={isCollapsed}
+                  icon={<Captions className="w-6 h-6" />}
+                />
+            </nav>
+          )}
+          <Collapsible open={!isCollapsed}>
+            <CollapsibleContent>
+              <nav className="flex flex-col gap-1 overflow-hidden">
+                <span className="text-sm text-gray-300 
+                font-medium mt-1 uppercase p-4 ">
+                  Painel
+                </span>
+                <SidebarLink
+                  href="/dashboard"
+                  label="Agendamentos"
+                  pathname={pathname}
+                  isCollapsed={isCollapsed}
+                  icon={<CalendarCheck2 className="w-6 h-6" />}
+                />
+                <SidebarLink
+                  href="/dashboard/service"
+                  label="Serviços"
+                  pathname={pathname}
+                  isCollapsed={isCollapsed}
+                  icon={<Folder className="w-6 h-6" />}
+                />
+                <span className="text-sm text-gray-300 
+                font-medium mt-1 uppercase p-4 ">
+                  Ajustes
+                </span>
+                <SidebarLink
+                  href="/dashboard/profile"
+                  label="Perfil"
+                  pathname={pathname}
+                  isCollapsed={isCollapsed}
+                  icon={<User className="w-6 h-6" />}
+                />
+                <SidebarLink
+                  href="/dashboard/plans"
+                  label="Planos"
+                  pathname={pathname}
+                  isCollapsed={isCollapsed}
+                  icon={<Captions className="w-6 h-6" />}
+                />
+              </nav>
+            </CollapsibleContent>
+          </Collapsible>
+
         </div>
       </aside>
 
