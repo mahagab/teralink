@@ -1,7 +1,19 @@
-export default function Servicos(){
+import getSession from "@/lib/getSession";
+import { redirect } from "next/navigation";
+import { ServicesContent } from "./_components/service-content";
+
+
+export default async function Service(){
+    const session = await getSession();
+  
+    console.log(session)
+  
+    if(!session){
+      redirect("/")
+    }
   return(
     <div>
-      <h1>oioioioioio</h1>
+      <ServicesContent userId={session.user?.id}/>
     </div>
   );
 

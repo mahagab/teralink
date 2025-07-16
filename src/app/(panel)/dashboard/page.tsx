@@ -1,5 +1,16 @@
+import getSession  from "@/lib/getSession";
+import { redirect } from "next/navigation";
 
-const Dashboard = () => {
+export default async function Dashboard(){
+
+  const session = await getSession();
+
+  console.log(session)
+
+  if(!session){
+    redirect("/")
+  }
+
 return(
   <div>
     <h1>teste</h1>
@@ -11,4 +22,3 @@ return(
 );
 }
 
-export default Dashboard;

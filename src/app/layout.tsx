@@ -1,6 +1,6 @@
-import type { Metadata } from "next";
 import "./globals.css";
-
+import { SessionAuthProvider } from '@/components/session-auth'
+import { Toaster } from 'sonner'
 export const metadata = {
   title: "TeraLink",
   icons: {
@@ -16,7 +16,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
-        {children}
+        <SessionAuthProvider>
+          <Toaster/>
+          {children}
+        </SessionAuthProvider>
+
       </body>
     </html>
   );
