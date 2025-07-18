@@ -6,8 +6,10 @@
 @theme {
   /* Cores Primárias/Secundárias */
   --color-principal: #AECAD6;
+  --color-principal-100: #76A6BA;
   --color-secundaria: #B3E0C9;
   --color-secundaria-100: #7DCAA2;
+  --color-secundaria-200: #BDD6C9;
 
   /* Cores de Fundo */
   --color-header: #FAF9F7;

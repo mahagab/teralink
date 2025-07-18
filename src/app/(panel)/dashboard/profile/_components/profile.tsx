@@ -30,13 +30,16 @@ import {
 } from '@/components/ui/dialog'
 
 import { Button } from '@/components/ui/button'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, LogOut } from 'lucide-react'
 import {extractPhoneNumber, formatPhone} from '@/utils/formatPhone'
 import imgTest from '../../../../../../public/professionals/prof1.png'
 import { cn } from '@/lib/utils'
 import { Prisma } from '@prisma/client'
 import { updateProfile } from '../_actions/update-profile'
 import { toast } from 'sonner'
+import { signOut,  useSession} from 'next-auth/react'
+import { redirect } from "next/navigation";
+
 type UserWithSubscription = Prisma.UserGetPayload<{
   include: {
     subscription: true
@@ -50,6 +53,7 @@ interface ProfileContentProps {
 export function ProfileContent({ user }: ProfileContentProps) {
   const [selectedHours, setSelectedHours] = useState<string[]>(user.times ?? [])
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
+  const {update} = useSession();
 
   const form = useProfileForm({
     name: user.name,
@@ -114,6 +118,12 @@ export function ProfileContent({ user }: ProfileContentProps) {
     
     toast.success(response.data)
 
+  }
+
+  async function handleLogOut() {
+    await signOut();
+    await update();
+    redirect("/")
   }
 
 
@@ -323,6 +333,15 @@ export function ProfileContent({ user }: ProfileContentProps) {
           </Card>
         </form>
       </Form>
+      <section className='mt-4'>
+        <Button
+        variant="destructive"
+        onClick={handleLogOut}
+        >
+          <LogOut className='w-4 h-4'/>
+          Sair da Conta
+        </Button>
+      </section>
     </div>
   )
 }

@@ -6,14 +6,15 @@ import {ProfileContent} from "./_components/profile";
 export default async function Profile(){
   const session = await getSession();
 
-  console.log(session)
 
   if(!session){
     redirect("/")
   }
 
   const user = await getUserData({userId: session.user?.id})
-  console.log(user)
+  if (!user) {
+  redirect("/"); 
+}
   return(
     <ProfileContent user={user}/>
   )
