@@ -8,6 +8,8 @@ export const metadata = {
   },
 };
 
+import { QueryClientContext } from "@/providers/queryclient";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -17,8 +19,10 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body>
         <SessionAuthProvider>
+          <QueryClientContext>
           <Toaster/>
           {children}
+          </QueryClientContext>
         </SessionAuthProvider>
 
       </body>

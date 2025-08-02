@@ -12,7 +12,7 @@ export function ButtonCopyLink({userId}: {userId: string} ){
   }
 
   return(
-    <Button onClick={handleCopyLink}>
+    <Button className="bg-principal-100 hover:bg-principal" onClick={handleCopyLink}>
       <LinkIcon className="w-5 h-5"/>
     </Button>
   )
